@@ -11,6 +11,7 @@
 
   <!-- Logic for printing custom titles for different pages -->
   <title><?php echo $title; ?></title>
+
 </head>
 
 <body>

@@ -1,8 +1,8 @@
 <?php
-$title = "Login"; /* This title is related to "header.php" file. */
-$h1 = "Login Form";  /* This h1 tag is related to "header.php" file. */
+$title = "Login";              /* This title is related to "header.php" file. */
+$h1 = "Login Form";            /* This h1 tag is related to "header.php" file. */
 session_start();
-require_once('header.php');  /* Header section added and it will get the bootstrap automatically.*/
+require_once('header.php');    /* Header section added and it will get the bootstrap automatically.*/
 
 if (isset($_SESSION['user_status'])) {
     header('location: /admin/dashboard.php');
