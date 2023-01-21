@@ -34,6 +34,14 @@
                             <hr class="dropdown-divider">
                         </li>
                         <li><a class="dropdown-item text-dark" href="banner.php">Banner</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-dark" href="service_head.php">Service Heading</a></li>
+                        <li>
+                            <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item text-dark" href="service_item.php">Service Item</a></li>
                     </ul>
                 </li>
             </ul>

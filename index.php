@@ -1,4 +1,4 @@
-<?
+<?php
 session_start();
 ?>
 
@@ -97,8 +97,8 @@ session_start();
           <div class="carousel-item active">
             <?php
             require_once 'database.php';
-            $get_query = "SELECT * FROM banners WHERE active_status = 1";  /* Query for reading table data from database*/
-            $banner_from_db = mysqli_query($db_connection, $get_query);
+            $get_banner_query = "SELECT * FROM banners WHERE active_status = 1";  /* Query for reading table data from database*/
+            $banner_from_db = mysqli_query($db_connection, $get_banner_query);
             foreach ($banner_from_db as $banners) :
             ?>
 
@@ -180,75 +180,57 @@ session_start();
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-6 offset-md-2">
-          <h2 class="custom_heading">
-            Our <span>Services</span>
-          </h2>
+
+          <?php
+          $get_service_head_query = "SELECT * from service_heads WHERE active_status = 1";
+          $service_head_from_db = mysqli_query($db_connection, $get_service_head_query);
+          // $after_assoc = mysqli_fetch_assoc($service_head_from_db);
+          ?>
+          <?php foreach ($service_head_from_db as $service_head) : ?>
+
+            <h2 class="custom_heading">
+              <?= $service_head['black_head'] ?> <span><?= $service_head['blue_head'] ?></span>
+            </h2>
+
+            <h6><?= $service_head['service_sub_head'] ?></h6>
+
+          <?php endforeach ?>
+
           <div class="container layout_padding2">
             <div class="row">
 
-              <div class="col-md-4">
-                <div class="img_box">
-                  <img src="front-end/images/s-1.png" alt="">
+              <?php
+              $get_service_item_query = "SELECT * FROM service_items WHERE active_status = 1 ORDER BY id DESC";
+              $service_item_from_db = mysqli_query($db_connection, $get_service_item_query);
+              foreach ($service_item_from_db as $service_items) :
+              ?>
+
+                <div class="col-md-4">
+                  <div class="img_box">
+                    <img src="<?= $service_items['image_location'] ?>" alt="">
+                  </div>
+                  <div class="detail_box">
+                    <h6>
+                      <?= $service_items['service_item_head'] ?>
+                    </h6>
+                    <p>
+                      <?= $service_items['service_item_detail'] ?>
+                    </p>
+                  </div>
                 </div>
-                <div class="detail_box">
-                  <h6>
-                    Pet Care
-                  </h6>
-                  <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
-                  </p>
-                </div>
-              </div>
+
+              <?php
+              endforeach
+              ?>
 
               <div class="col-md-4">
-                <div class="img_box">
-                  <img src="front-end/images/s-2.png" alt="">
-                </div>
-                <div class="detail_box">
-                  <h6>
-                    Pet Hotel
-                  </h6>
-                  <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
-                  </p>
-                </div>
-              </div>
-
-              <div class="col-md-4">
-                <div class="img_box">
-                  <img src="front-end/images/s-3.png" alt="">
-                </div>
-                <div class="detail_box">
-                  <h6>
-                    Emergency
-                  </h6>
-                  <p>
-                    onsectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-                    enim ad minim veniam, quis nostrud exe
-                  </p>
-                </div>
+                <img src="front-end/images/tool.png" alt="" class="w-100">
               </div>
             </div>
           </div>
-
-          <div>
-            <a href="">
-              Read More
-            </a>
-          </div>
-        </div>
-        <div class="col-md-4">
-          <img src="front-end/images/tool.png" alt="" class="w-100">
-        </div>
-      </div>
-    </div>
   </section>
 
   <!-- end service section -->
-
-
 
   <!-- gallery section -->
   <section class="gallery-section layout_padding">
@@ -446,6 +428,53 @@ session_start();
     </div>
     </div>
   </section>
+
+
+  <div class="fun-facts">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <div class="left-content">
+            <span>Lorem ipsum dolor sit amet</span>
+            <h2>Our solutions for your <em>business growth</em></h2>
+            <p>Pellentesque ultrices at turpis in vestibulum. Aenean pretium elit nec congue elementum. Nulla luctus laoreet porta. Maecenas at nisi tempus, porta metus vitae, faucibus augue.
+              <br><br>Fusce et venenatis ex. Quisque varius, velit quis dictum sagittis, odio velit molestie nunc, ut posuere ante tortor ut neque.
+            </p>
+            <a href="" class="filled-button">Read More</a>
+          </div>
+        </div>
+        <div class="col-md-6 align-self-center">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="count-area-content">
+                <div class="count-digit">945</div>
+                <div class="count-title">Work Hours</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="count-area-content">
+                <div class="count-digit">1280</div>
+                <div class="count-title">Great Reviews</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="count-area-content">
+                <div class="count-digit">578</div>
+                <div class="count-title">Projects Done</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="count-area-content">
+                <div class="count-digit">26</div>
+                <div class="count-title">Awards Won</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
 
 
   <!-- end map section -->
